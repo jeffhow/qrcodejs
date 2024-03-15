@@ -17,13 +17,16 @@
 	</section>
 	<section class="output">
 		<div class="png">
-
 			<h2>PNG</h2>
 			<div id="qrcode-png" style="width:100px; height:100px; margin-top:15px;"></div>
+			<p class="url"></p>
+			<a href="#" id="download-png" download>Download</a>
 		</div>
 		<div class="svg"> 	
 			<h2>SVG</h2>
 			<div id="qrcode-svg" style="width:100px; height:100px; margin-top:15px;"></div>
+			<p class="url"></p>
+			<button id="download-svg">Download</button>
 		</div>
 	</section>
 	<footer class="site-footer">
@@ -33,6 +36,7 @@
     </footer>
 
 	<script type="text/javascript">
+
 	var qrcode_png = new QRCode(document.getElementById("qrcode-png"), {
 		width : 100,
 		height : 100
@@ -48,6 +52,9 @@
 		qrcode_png.clear();
 		qrcode_svg.clear();
 		var elText = document.getElementById("text");
+		document.querySelectorAll('.url').forEach(p=>{
+			p.innerText = elText.value;
+		})
 		
 		if (!elText.value) {
 			alert("Input a text");
@@ -57,21 +64,32 @@
 		
 		qrcode_png.makeCode(elText.value);
 		qrcode_svg.makeCode(elText.value);
+
 	}
 	
+	function dl() {
+		setTimeout( ()=>{
+			let pngSrc = document.querySelector('.png div img').src;
+			document.querySelector('#download-png').href=pngSrc;
+		},100);
+	}
 
 	
 	makeCode();
-
+	dl();
+	
 	$("#text").
-		on("blur", function () {
-			makeCode();
-		}).
-		on("keydown", function (e) {
-			if (e.keyCode == 13) {
+	on("blur", function () {
+		makeCode();
+		dl();
+	}).
+	on("keydown", function (e) {
+		if (e.keyCode == 13) {
 				makeCode();
+				dl();
 			}
 		});
+
 	</script>
 </body>
 </html>
