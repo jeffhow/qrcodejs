@@ -44,7 +44,9 @@
 		useSVG: true
 	});
 
-	function makeCode () {		
+	function makeCode () {	
+		qrcode_png.clear();
+		qrcode_svg.clear();
 		var elText = document.getElementById("text");
 		
 		if (!elText.value) {
@@ -55,18 +57,9 @@
 		
 		qrcode_png.makeCode(elText.value);
 		qrcode_svg.makeCode(elText.value);
-		makeLabel();
 	}
 	
-	function makeLabel() {
-		// 🤷‍♂️ something to do with the canvas drawer
-		window.setTimeout(() => {
-			let txt = document.getElementById("text").value;
-			document
-			.querySelectorAll(".output > div")
-			.forEach( q => q.innerHTML += `<p>${txt}</p>` );
-		}, 500);
-	}
+
 	
 	makeCode();
 
