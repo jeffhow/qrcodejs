@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Cross-Browser QRCode generator for Javascript</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-<link rel="icon" href="https://fav.farm/🤖" />
-<link rel="stylesheet" href="style.css">
-<script type="text/javascript" src="jquery.min.js"></script>
-<script type="text/javascript" src="qrcode.js"></script>
+	<title>Cross-Browser QRCode generator for Javascript</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+	<link rel="icon" href="https://fav.farm/🤖" />
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="qrcode.js"></script>
 </head>
 <body>
+	<header class="site-header">QR Code Generator</header>
 	<section class="input">
 		<label for="text">QR Code Text</label>
-		<input id="text" type="text" value="https://techhigh.us" style="width:80%" /><br />
+		<input id="text" type="text" value="https://techhigh.us" /><br />
 	</section>
 	<section class="output">
 		<div class="png">
@@ -25,42 +26,58 @@
 			<div id="qrcode-svg" style="width:100px; height:100px; margin-top:15px;"></div>
 		</div>
 	</section>
+	<footer class="site-footer">
+        <a href="https://github.com/jeffhow/qrcodejs" title="Get the code" target="_blank">
+            <img src="github-mark-white.png" alt="GitHub Logomark" width="40">
+        </a>
+    </footer>
 
-<script type="text/javascript">
-var qrcode_png = new QRCode(document.getElementById("qrcode-png"), {
-	width : 100,
-	height : 100
-});
+	<script type="text/javascript">
+	var qrcode_png = new QRCode(document.getElementById("qrcode-png"), {
+		width : 100,
+		height : 100
+	});
 
-var qrcode_svg = new QRCode(document.getElementById("qrcode-svg"), {
-	width : 100,
-	height : 100,
-	useSVG: true
-});
+	var qrcode_svg = new QRCode(document.getElementById("qrcode-svg"), {
+		width : 100,
+		height : 100,
+		useSVG: true
+	});
 
-function makeCode () {		
-	var elText = document.getElementById("text");
-	
-	if (!elText.value) {
-		alert("Input a text");
-		elText.focus();
-		return;
+	function makeCode () {		
+		var elText = document.getElementById("text");
+		
+		if (!elText.value) {
+			alert("Input a text");
+			elText.focus();
+			return;
+		}
+		
+		qrcode_png.makeCode(elText.value);
+		qrcode_svg.makeCode(elText.value);
+		makeLabel();
+	}
+	function makeLabel() {
+		// 🤷‍♂️ something to do with the canvas drawer
+		window.setTimeout(() => {
+			let txt = document.getElementById("text").value;
+			document
+			.querySelectorAll(".output > div")
+			.forEach( q => q.innerHTML += `<p>${txt}</p>` );
+		}, 500);
 	}
 	
-	qrcode_png.makeCode(elText.value);
-	qrcode_svg.makeCode(elText.value);
-}
+	makeCode();
 
-makeCode();
-
-$("#text").
-	on("blur", function () {
-		makeCode();
-	}).
-	on("keydown", function (e) {
-		if (e.keyCode == 13) {
+	$("#text").
+		on("blur", function () {
 			makeCode();
-		}
-	});
-</script>
+		}).
+		on("keydown", function (e) {
+			if (e.keyCode == 13) {
+				makeCode();
+			}
+		});
+	</script>
 </body>
+</html>
