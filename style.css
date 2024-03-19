@@ -75,3 +75,24 @@ input {
     opacity: 0.5;
 }
 
+.dwnldbtn {
+  border: 2px solid white;
+  padding: 8px 20px;
+  background-color: white;
+  color: #2C4251;
+  display: inline-block;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 16px;
+  margin: auto;
+  transition: all 0.3s ease;
+}
+.dwnldbtn:hover {
+  background-color: #ABABAB;
+  border: 2px solid #ABABAB;
+}
+
+.downloadAwesome {
+  width: 16px;
+  height: 14px;
+}
