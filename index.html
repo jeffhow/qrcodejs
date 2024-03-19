@@ -68,7 +68,7 @@
 
 
 		function downloadSVGAsText() {
-			const base64doc = btoa(unescape(encodeURIComponent(document.querySelector('svg').outerHTML)));
+			const base64doc = btoa(unescape(encodeURIComponent(document.querySelector('#qrcode-svg svg').outerHTML)));
 			const a = document.createElement('a');
 			const e = new MouseEvent('click');
 
