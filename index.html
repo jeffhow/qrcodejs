@@ -33,6 +33,7 @@
         <a href="https://github.com/jeffhow/qrcodejs" title="Get the code" target="_blank">
             <img src="github-mark-white.png" alt="GitHub Logomark" width="40">
         </a>
+		<button id="downloadSVG">Download SVG</button>
     </footer>
 
 	<script type="text/javascript">
@@ -45,7 +46,7 @@
 	var qrcode_svg = new QRCode(document.getElementById("qrcode-svg"), {
 		width : 100,
 		height : 100,
-		useSVG: true
+		useSVG: true,
 	});
 
 	function makeCode () {	
@@ -64,6 +65,20 @@
 		
 		qrcode_png.makeCode(elText.value);
 		qrcode_svg.makeCode(elText.value);
+
+
+		function downloadSVGAsText() {
+			const base64doc = btoa(unescape(encodeURIComponent(document.querySelector('svg').outerHTML)));
+			const a = document.createElement('a');
+			const e = new MouseEvent('click');
+
+			a.download = 'qrcode.svg';
+			a.href = 'data:text/html;base64,' + base64doc;
+			a.dispatchEvent(e);
+		}
+
+		const downloadSVG = document.querySelector('#downloadSVG');
+		downloadSVG.addEventListener('click', downloadSVGAsText);
 
 	}
 	
