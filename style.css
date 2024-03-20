@@ -75,11 +75,11 @@ input {
     opacity: 0.5;
 }
 
-.dwnldbtn {
+.btn {
   border: 2px solid white;
   padding: 8px 20px;
-  background-color: white;
-  color: #2C4251;
+  background-color: transparent;
+  color: white;
   display: inline-block;
   border-radius: 8px;
   text-decoration: none;
@@ -87,12 +87,18 @@ input {
   margin: auto;
   transition: all 0.3s ease;
 }
-.dwnldbtn:hover {
-  background-color: #ABABAB;
-  border: 2px solid #ABABAB;
+.btn:hover {
+  background-color: #fff;
+  color: #2C4251
+}
+
+.btn:hover .downloadAwesome {
+  fill: #2C4251
 }
 
 .downloadAwesome {
+  transition: all 0.3s ease;
   width: 16px;
   height: 14px;
+  fill: #fff;
 }
