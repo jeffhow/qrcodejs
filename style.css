@@ -19,13 +19,14 @@ section {
 
 label {
   display: block;
-  font-size: 0.8em;
+  font-size: 24px;
   margin-bottom: 5px;
   width: 100%;
 }
 input {
     padding: 7px;
     width: 100%;
+    font-size: 18px;
 }
 
 .output {
@@ -101,4 +102,15 @@ input {
   width: 16px;
   height: 14px;
   fill: #fff;
+}
+.oneBtn {
+  margin-right: 5px;
+}
+
+.twoBtn {
+  margin-left: 5px;
+}
+
+.url {
+  font-size: 18px;
 }
